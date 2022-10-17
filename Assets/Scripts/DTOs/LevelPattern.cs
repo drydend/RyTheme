@@ -2,10 +2,10 @@
 
 public class LevelPattern
 {
-    public TrackData TrackData { get; }
-    public Dictionary<SupportedSongType, Queue<NoteData>> Notes { get; }
+    public ParsedTrackData TrackData { get; }
+    public Dictionary<LevelType, Queue<NoteData>> Notes { get; }
 
-    public LevelPattern(Dictionary<SupportedSongType, Queue<NoteData>> notes, TrackData trackData)
+    public LevelPattern(Dictionary<LevelType, Queue<NoteData>> notes, ParsedTrackData trackData)
     {
         TrackData = trackData;
         Notes = notes;

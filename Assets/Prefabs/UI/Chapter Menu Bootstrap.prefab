@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9143864305484971025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9143864305484971055}
+  - component: {fileID: 9143864305484971054}
+  m_Layer: 0
+  m_Name: Chapter Menu Bootstrap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9143864305484971055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143864305484971025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9143864305484971054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143864305484971025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887583dcb7518964ebd0c029915717d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _storyChapters:
+  - {fileID: 11400000, guid: a0bf2e83d29bbbf4aa711f040c15c6da, type: 2}
+  - {fileID: 11400000, guid: e766c2bdf97f8de4c8150892be1c1986, type: 2}
+  - {fileID: 11400000, guid: d1da8db9423eb4648b3b5b8518389260, type: 2}
+  _chainMenuItemPrefab: {fileID: -2599630529570152252, guid: 743db58f2e8b9094cafc6e7e409d4b56, type: 3}
+  _chainMenuConfig: {fileID: 11400000, guid: 4baea33cadea254468711d2b53bbceca, type: 2}
+  _itemsParent: {fileID: 0}
+  _chapterMenuProvider: {fileID: 0}

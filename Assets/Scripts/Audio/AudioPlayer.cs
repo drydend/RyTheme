@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioPlayer : MonoBehaviour 
 {
     private AudioSource _audioSource;
 
-    private Track _track;
-    private TrackData _trackData;
+    private AudioClip _currentSong;
+    private LevelData _levelData;
     private float _noteAnimationDuration;
 
     public event Action<float> OnTrackTimeChanged;
 
-    public void Initialize(float noteAnimationDuration, Track track, TrackData trackData)
+    public void Initialize(float noteAnimationDuration, LevelData levelData)
     {
         _noteAnimationDuration = noteAnimationDuration;
-        _track = track;
-        _trackData = trackData;
-
-        _audioSource.clip = _track.CurrentTrack;
+        _levelData = levelData;
+        _currentSong = levelData.Music;
+        _audioSource.clip = _currentSong;
     }
 
     public void Play()
@@ -32,7 +29,7 @@ public class AudioPlayer : MonoBehaviour
 
     public IEnumerator SongCoroutine()
     {
-        float timeElapsed = -_trackData.SongTimeOffset;
+        float timeElapsed = -_levelData.SongTimeOffset;
 
         while(_noteAnimationDuration > timeElapsed)
         {
@@ -45,7 +42,7 @@ public class AudioPlayer : MonoBehaviour
 
         var timeOffset = _noteAnimationDuration - timeElapsed ;
 
-        while(_track.CurrentTrack.length > _audioSource.time + timeOffset + _noteAnimationDuration)
+        while(_currentSong.length > _audioSource.time + timeOffset + _noteAnimationDuration)
         {
             OnTrackTimeChanged?.Invoke(_audioSource.time + timeElapsed + timeOffset);
             yield return null;
