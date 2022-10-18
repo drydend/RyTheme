@@ -37,7 +37,7 @@ public class StoryLevelInfoMenu : UIMenu
 
         _title.text = levelData.Title;
         _author.text = levelData.Artist;
-        _time.text = "0.00 - " + GetTimeInMinutes(levelData.Music.length).ToString();
+        _time.text = "0.00 - " + GetTimeInMinutes(levelData.Music.length);
         _coverImage.sprite = levelData.Banner;
     }
 
@@ -51,11 +51,11 @@ public class StoryLevelInfoMenu : UIMenu
         _storyLevelLoader.PlayStoryLevel(_currentStoryLevel, _currentLevelData);
     }
 
-    private float GetTimeInMinutes(float seconds)
+    private string GetTimeInMinutes(float seconds)
     {
-        float integerPart = Mathf.Floor(seconds / 60);
-        float floatPart = seconds % 60;
+        int integerPart = Mathf.FloorToInt(seconds / 60);
+        int floatPart = (int)seconds % 60;
 
-        return integerPart + floatPart;
+        return $"{integerPart},{floatPart}";
     }
 }
