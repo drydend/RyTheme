@@ -16,7 +16,7 @@ public class StoryGameMode : GameMode
 
     public override IEnumerator OnExit()
     {
-        yield break;
+        yield return SceneManager.UnloadSceneAsync(_sceneName);
     }
 }
 

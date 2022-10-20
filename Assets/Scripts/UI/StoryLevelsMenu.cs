@@ -55,7 +55,7 @@ public class StoryLevelsMenu : MonoBehaviour
             levelItem.Initialize(currentLevel, levelData, _storyLevelInfoMenu);
             _currentLevelItems.Add(levelItem);
 
-            while (currentLevel.NextLevel != null)
+            while (currentLevel.NextLevel != storyChapter.LastLevel)
             {
                 currentLevel = currentLevel.NextLevel;
                 var nextlevelItem = Instantiate(_levelMenuItemPrefab, _itemParent);

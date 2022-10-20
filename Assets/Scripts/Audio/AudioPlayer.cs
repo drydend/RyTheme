@@ -11,11 +11,14 @@ public class AudioPlayer : MonoBehaviour
     private AudioClip _currentSong;
     private LevelData _levelData;
     private float _noteAnimationDuration;
+    public Coroutine _songCoroutine;
 
     public event Action<float> OnTrackTimeChanged;
 
     public void Initialize(float noteAnimationDuration, LevelData levelData)
     {
+        _audioSource = GetComponent<AudioSource>();
+
         _noteAnimationDuration = noteAnimationDuration;
         _levelData = levelData;
         _currentSong = levelData.Music;
@@ -24,7 +27,7 @@ public class AudioPlayer : MonoBehaviour
 
     public void Play()
     {
-        StartCoroutine(SongCoroutine());
+        _songCoroutine = StartCoroutine(SongCoroutine());
     }
 
     public IEnumerator SongCoroutine()
@@ -48,8 +51,10 @@ public class AudioPlayer : MonoBehaviour
             yield return null;
         }
     }
-    private void Awake()
+
+    public void Stop()
     {
-        _audioSource = GetComponent<AudioSource>();
+        StopCoroutine(_songCoroutine);
+        _audioSource.Stop();
     }
 }

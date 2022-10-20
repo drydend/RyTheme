@@ -26,11 +26,6 @@ public class SceneTransition : MonoBehaviour
 
     private void OnEnable()
     {   
-        if(Current != null)
-        {
-            throw new Exception("SceneTransition already exist");
-        }
-
         Current = this;
         _animator = GetComponent<Animator>();
     }

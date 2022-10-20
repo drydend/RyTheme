@@ -58,7 +58,7 @@ public class NotesLine : MonoBehaviour
         }
 
         var currentNote = _notesQueue.Dequeue();
-        currentNote.OnPressed();
+        currentNote.OnNotePressed();
     }
 
     private void OnCrossPressed()

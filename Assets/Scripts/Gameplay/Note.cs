@@ -11,6 +11,8 @@ public class Note : MonoBehaviour
     public float CurrentPositionInTime { get; private set; }
 
     public event Action OnReachedEnd;
+    public event Action OnPressed;
+    
     public void Initialize(Transform startPoing, Transform crossPoint, Transform endPoint, float timeToCrossing)
     {
         _startPoint = startPoing;
@@ -22,14 +24,16 @@ public class Note : MonoBehaviour
 
         _movingSpeed = Vector2.Distance(_startPoint.position, _crossPoint.position) / _timeToCrossing;
     }
+    
     public void AdjustCurrentPositionAndTime(float adjustingTime)
     {
         CurrentPositionInTime -= adjustingTime;
         transform.position = Vector2.MoveTowards(transform.position, _endPoint.position, _movingSpeed * adjustingTime);
     }
 
-    public void OnPressed()
-    {
+    public void OnNotePressed()
+    {   
+        OnPressed();
         Destroy(gameObject);
     }
 

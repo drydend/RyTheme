@@ -16,6 +16,6 @@ public class MainMenuMode : GameMode
 
     public override IEnumerator OnExit()
     {
-        yield break;
+        yield return SceneManager.UnloadSceneAsync(_sceneName);
     }
 }
