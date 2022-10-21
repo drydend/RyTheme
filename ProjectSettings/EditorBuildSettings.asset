@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/BootstrapScene.unity
+    guid: d9290cf99566ebc43b4c37cd8deda071
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: e43ee83f0706d8d4c98271653fc03129
   - enabled: 1
-    path: Assets/Scenes/StoryGameModeScene.unity
+    path: Assets/Scenes/StoryPianoLevelScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/BootstrapScene.unity
-    guid: d9290cf99566ebc43b4c37cd8deda071
+    path: Assets/Scenes/StoryCrossLevelScene.unity
+    guid: 6d9a026d29b3ddd46aa9b0679aa82a99
   m_configObjects: {}

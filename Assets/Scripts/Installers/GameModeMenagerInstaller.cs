@@ -7,9 +7,12 @@ public class GameModeMenagerInstaller : MonoInstaller
     private GameModeManager _gameModeMenager;
 
     public override void InstallBindings()
-    {
+    {   
+        var gameModeMenager = Instantiate(_gameModeMenager);
+        DontDestroyOnLoad(gameModeMenager.gameObject);
+
         Container.Bind<GameModeManager>()
-            .FromComponentInNewPrefab(_gameModeMenager)
+            .FromInstance(gameModeMenager)
             .AsSingle();
     }
 }

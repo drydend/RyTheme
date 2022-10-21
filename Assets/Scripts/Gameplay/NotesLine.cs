@@ -24,24 +24,25 @@ public class NotesLine : MonoBehaviour
     public void AddNoteToQueue(Note note)
     {
         _notesQueue.Enqueue(note);
+        note.OnReachedEnd += () => _notesQueue.Dequeue();
     }
 
     public bool CheckIfNoteIsOnCross()
     {
         if (_notesQueue.TryPeek(out Note note))
-        {
-            if (note.CurrentPositionInTime < 0 + _gameConfig.NoteTimeDeltaForOk
-                && note.CurrentPositionInTime > 0 - _gameConfig.NoteTimeDeltaForOk)
+        {   
+            if (note.DistanceToCrossPoint < 0 + _gameConfig.NoteDistanceDeltaForOk
+                && note.DistanceToCrossPoint > 0 - _gameConfig.NoteDistanceDeltaForOk)
             {
                 return true;
             }
-            else if (note.CurrentPositionInTime < 0 + _gameConfig.NoteTimeDeltaForGood
-                && note.CurrentPositionInTime > 0 - _gameConfig.NoteTimeDeltaForGood)
+            else if (note.DistanceToCrossPoint < 0 + _gameConfig.NoteDistanceDeltaForGood
+                && note.DistanceToCrossPoint > 0 - _gameConfig.NoteDistanceDeltaForGood)
             {
                 return true;
             }
-            else if (note.CurrentPositionInTime < 0 + _gameConfig.NoteTimeDeltaForPerfect
-                && note.CurrentPositionInTime > 0 - _gameConfig.NoteTimeDeltaForPerfect)
+            else if (note.DistanceToCrossPoint < 0 + _gameConfig.NoteDistanceDeltaForPerfect
+                && note.DistanceToCrossPoint > 0 - _gameConfig.NoteDistanceDeltaForPerfect)
             {
                 return true;
             }
@@ -72,25 +73,10 @@ public class NotesLine : MonoBehaviour
         {
             PressCurrentNote();
         }
-        else
-        {
-            Debug.Log("Miss");
-        }
     }
 
     private void Awake()
     {
         _cross.OnPressed += OnCrossPressed;
-    }
-
-    private void Update()
-    {
-        if (_notesQueue.TryPeek(out Note note))
-        {
-            if (note.CurrentPositionInTime < 0 - _gameConfig.NoteTimeDeltaForOk)
-            {
-                _notesQueue.Dequeue();                
-            }
-        }
     }
 }

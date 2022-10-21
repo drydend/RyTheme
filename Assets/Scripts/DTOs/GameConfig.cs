@@ -4,11 +4,11 @@
 public class GameConfig : ScriptableObject
 {
     [SerializeField]
-    private float _noteTimeDeltaForPerfect = 0.05f;
+    private float _noteDistanceDeltaForPerfect = 0.05f;
     [SerializeField]
-    private float _noteTimeDeltaForGood = 0.1f;
+    private float _noteDistanceDeltaForGood = 0.1f;
     [SerializeField]
-    private float _noteTimeDeltaForOk = 0.15f;
+    private float _noteDistanceDeltaForOk = 0.15f;
 
     [SerializeField]
     private int _scoreForOk = 100;
@@ -22,9 +22,9 @@ public class GameConfig : ScriptableObject
     [SerializeField]
     private float _damageForMiss;
     
-    public float NoteTimeDeltaForPerfect => _noteTimeDeltaForPerfect;
-    public float NoteTimeDeltaForGood => _noteTimeDeltaForGood; 
-    public float NoteTimeDeltaForOk => _noteTimeDeltaForOk;
+    public float NoteDistanceDeltaForPerfect => _noteDistanceDeltaForPerfect;
+    public float NoteDistanceDeltaForGood => _noteDistanceDeltaForGood; 
+    public float NoteDistanceDeltaForOk => _noteDistanceDeltaForOk;
 
     public int ScoreForOk => _scoreForOk;
     public int ScoreForGood => _scoreForGood;

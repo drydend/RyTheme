@@ -146,23 +146,21 @@ public class SmParser
 
     private void ParseNotes(int lineIndex, int indexOfEndOfParameter)
     {
-        string songTypeString = _lines[lineIndex + 1].Trim(' ', ':').Replace("-", "").ToLower();
+        string songTypeString = _lines[lineIndex + 1].Trim(' ', ':').ToLower();
         string songDifficultyString = _lines[lineIndex + 3].Trim(' ', ':').Replace("-", "").ToLower();
-
-        if (!IsSongTypeSupported(songTypeString))
-        {
-            UnityEngine.Debug.LogError($"This song type is not supported {songTypeString}");
-            return;
-        }
 
         var songType = DefineSongType(songTypeString);
         var songDifficulty = DefineSongDifficulty(songDifficultyString);
 
         switch (songType)
         {
-            case LevelType.DanceSingle:
-                _notesData[LevelType.DanceSingle] = ParseDanceSingle(lineIndex + 5, indexOfEndOfParameter);
-                _levelDifficulties[LevelType.DanceSingle] = songDifficulty;
+            case LevelType.Piano:
+                _notesData[LevelType.Piano] = ParsePianoOrCross(lineIndex + 5, indexOfEndOfParameter);
+                _levelDifficulties[LevelType.Piano] = songDifficulty;
+                break;
+            case LevelType.Cross:
+                _notesData[LevelType.Cross] = ParsePianoOrCross(lineIndex + 5, indexOfEndOfParameter);
+                _levelDifficulties[LevelType.Cross] = songDifficulty;
                 break;
             default:
                 break;
@@ -170,7 +168,7 @@ public class SmParser
 
     }
 
-    private Queue<NoteData> ParseDanceSingle(int lineIndex, int indexOfEndOfParameter)
+    private Queue<NoteData> ParsePianoOrCross(int lineIndex, int indexOfEndOfParameter)
     {
         var notesData = new Queue<NoteData>();
 
@@ -253,26 +251,16 @@ public class SmParser
         return pressTime - _songOffset;
     }
 
-    private bool IsSongTypeSupported(string songType)
-    {
-        foreach(var levelType in Enum.GetNames(typeof(LevelType)))
-        {
-            if (levelType.ToString().ToLower() == songType)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
     private LevelType DefineSongType(string songType)
     {
-        foreach (var levelType in Enum.GetNames(typeof(LevelType)))
+        switch (songType)
         {
-            if (levelType.ToString().ToLower() == songType)
-            {
-                return Enum.Parse<LevelType>(levelType, true);
-            }
+            case "dance-piano":
+                return LevelType.Piano;
+            case "dance-cross":
+                return LevelType.Cross;
+            default:
+                break;
         }
 
         throw new Exception($"Can`t define song type {songType}");

@@ -24,6 +24,7 @@ public class LevelData
         Music = music;
         BPM = parsedTrackData.BPM;
         SongTimeOffset = parsedTrackData.SongTimeOffset;
+        CurrentLevelType = levelType;
         LevelDifficulty = parsedTrackData.LevelDifficulty[levelType];
         LevelsPattern = parsedTrackData.LevelPatterns[levelType];
     }

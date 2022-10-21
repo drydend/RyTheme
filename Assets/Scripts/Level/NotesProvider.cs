@@ -14,7 +14,7 @@ public class NotesProvider
     {
         _notesOnScene.Add(note);
 
-        note.OnPressed += () => OnNoteReachedEnd?.Invoke(note);
+        note.OnPressed += () => OnNotePressed?.Invoke(note);
         note.OnPressed += () => _notesOnScene.Remove(note);
 
         note.OnReachedEnd += () => OnNoteReachedEnd?.Invoke(note);

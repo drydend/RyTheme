@@ -31,18 +31,18 @@ public class LevelScore : MonoBehaviour
 
     private int GetScoreForNote(Note note)
     {
-        if (note.CurrentPositionInTime < 0 + _gameConfig.NoteTimeDeltaForPerfect
-            && note.CurrentPositionInTime > 0 - _gameConfig.NoteTimeDeltaForPerfect)
+        if (note.DistanceToCrossPoint < 0 + _gameConfig.NoteDistanceDeltaForPerfect
+            && note.DistanceToCrossPoint > 0 - _gameConfig.NoteDistanceDeltaForPerfect)
         {
             return _gameConfig.ScoreForPerfect;
         }
-        else if (note.CurrentPositionInTime < 0 + _gameConfig.NoteTimeDeltaForGood
-            && note.CurrentPositionInTime > 0 - _gameConfig.NoteTimeDeltaForGood)
+        else if (note.DistanceToCrossPoint < 0 + _gameConfig.NoteDistanceDeltaForGood
+            && note.DistanceToCrossPoint > 0 - _gameConfig.NoteDistanceDeltaForGood)
         {
             return _gameConfig.ScoreForGood;
         }
-        else if (note.CurrentPositionInTime < 0 + _gameConfig.NoteTimeDeltaForOk
-               && note.CurrentPositionInTime > 0 - _gameConfig.NoteTimeDeltaForOk)
+        else if (note.DistanceToCrossPoint < 0 + _gameConfig.NoteDistanceDeltaForOk
+               && note.DistanceToCrossPoint > 0 - _gameConfig.NoteDistanceDeltaForOk)
         {
             return _gameConfig.ScoreForOk;
         }

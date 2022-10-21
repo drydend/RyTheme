@@ -1,4 +1,5 @@
 ﻿public enum LevelType
 {
-    DanceSingle = 0
+    Piano = 0,
+    Cross = 1
 }

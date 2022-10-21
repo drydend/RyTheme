@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf56feb20c99234f954bbc1ca66ee9b, type: 3}
   m_Name: Game config
   m_EditorClassIdentifier: 
-  _noteTimeDeltaForPerfect: 0.1
-  _noteTimeDeltaForGood: 0.2
-  _noteTimeDeltaForOk: 0.3
+  _noteDistanceDeltaForPerfect: 0.2
+  _noteDistanceDeltaForGood: 0.5
+  _noteDistanceDeltaForOk: 0.8
   _scoreForOk: 100
   _scoreForGood: 200
   _scoreForPerfect: 300
-  _noteTimeToCrossing: 1.5
+  _noteTimeToCrossing: 0.7
   _damageForMiss: 1

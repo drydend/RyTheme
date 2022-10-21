@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50fabf43ea5d9d640934d4c9324c66d3, type: 3}
-  m_Name: Story Chapter 1
+  m_Name: Story Chapter 2
   m_EditorClassIdentifier: 
   _cover: {fileID: 7482667652216324306, guid: bee469c82d55dc149bf5b933893d851a, type: 3}
-  _levels: []
   _firstLevel: {fileID: 11400000, guid: 6f2e1f63d18e7d2409283ab6f27de83c, type: 2}
   _lastLevel: {fileID: 11400000, guid: be84102e05956e54e9176140e60157ec, type: 2}
   _nextChapter: {fileID: 11400000, guid: d1da8db9423eb4648b3b5b8518389260, type: 2}
-  _chapterNumber: 1
+  _chapterNumber: 2
+  _levelType: 1

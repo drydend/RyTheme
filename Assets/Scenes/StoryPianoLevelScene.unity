@@ -156,10 +156,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 520948367}
-  - {fileID: 390451947}
-  - {fileID: 823051125}
   - {fileID: 1739308251}
+  - {fileID: 390451947}
+  - {fileID: 520948367}
+  - {fileID: 823051125}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -650,6 +650,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7263717365014242521, guid: 177c477f67978734291368165697cd36, type: 3}
+      propertyPath: _buttonPosition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7718487679538196200, guid: 177c477f67978734291368165697cd36, type: 3}
       propertyPath: _keyCode
       value: 100
@@ -789,7 +793,7 @@ Transform:
   - {fileID: 1227857583}
   - {fileID: 1157689786}
   m_Father: {fileID: 106189303}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &520948368
 MonoBehaviour:
@@ -973,7 +977,7 @@ Transform:
   - {fileID: 1314788929}
   - {fileID: 331941796}
   m_Father: {fileID: 106189303}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &823051126
 MonoBehaviour:
@@ -1734,6 +1738,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7263717365014242521, guid: 177c477f67978734291368165697cd36, type: 3}
+      propertyPath: _buttonPosition
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7718487679538196200, guid: 177c477f67978734291368165697cd36, type: 3}
       propertyPath: _keyCode
       value: 106
@@ -1805,6 +1813,10 @@ PrefabInstance:
     - target: {fileID: 163864162740261575, guid: 177c477f67978734291368165697cd36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7263717365014242521, guid: 177c477f67978734291368165697cd36, type: 3}
+      propertyPath: _buttonPosition
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7718487679538196200, guid: 177c477f67978734291368165697cd36, type: 3}
       propertyPath: _keyCode
@@ -1891,7 +1903,7 @@ Transform:
   - {fileID: 1686954809}
   - {fileID: 68525658}
   m_Father: {fileID: 106189303}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1739308252
 MonoBehaviour:
@@ -2396,7 +2408,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.243
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -8,7 +8,13 @@ public class Note : MonoBehaviour
     private Transform _startPoint;
     private Transform _crossPoint;
     private Transform _endPoint;
-    public float CurrentPositionInTime { get; private set; }
+    private Vector3 _targetPosition;
+    private float _distanceToCrossPoint;
+
+    private bool _isPressed;
+    private bool _hasReachedEnd;
+
+    public float DistanceToCrossPoint => _distanceToCrossPoint;
 
     public event Action OnReachedEnd;
     public event Action OnPressed;
@@ -20,32 +26,41 @@ public class Note : MonoBehaviour
         _endPoint = endPoint;
         _timeToCrossing = timeToCrossing;
         transform.position = _startPoint.position;
-        CurrentPositionInTime = timeToCrossing;
+        _targetPosition = _crossPoint.position;
 
         _movingSpeed = Vector2.Distance(_startPoint.position, _crossPoint.position) / _timeToCrossing;
     }
     
     public void AdjustCurrentPositionAndTime(float adjustingTime)
     {
-        CurrentPositionInTime -= adjustingTime;
-        transform.position = Vector2.MoveTowards(transform.position, _endPoint.position, _movingSpeed * adjustingTime);
+        transform.position = Vector2.MoveTowards(transform.position, _crossPoint.position, _movingSpeed * adjustingTime);
     }
 
     public void OnNotePressed()
-    {   
-        OnPressed();
+    {
+        if (_hasReachedEnd)
+        {
+            return;
+        }
+
+        _isPressed = true;
+        OnPressed?.Invoke();
         Destroy(gameObject);
     }
 
     private void Update()
     {
-        CurrentPositionInTime -= Time.deltaTime;
-        transform.position = Vector2.MoveTowards(transform.position, _endPoint.position, _movingSpeed * Time.deltaTime);
-        
-        if(transform.position == _endPoint.transform.position)
-        {
-            OnReachedEnd?.Invoke();
-            Destroy(gameObject);
+        transform.position = Vector2.MoveTowards(transform.position, _targetPosition, _movingSpeed * Time.deltaTime);
+        _distanceToCrossPoint = Vector2.Distance(transform.position, _crossPoint.position);
+
+        if (transform.position == _crossPoint.transform.position)
+        {   
+            if (!_isPressed)
+            {
+                _hasReachedEnd = true;
+                OnReachedEnd?.Invoke();
+                Destroy(gameObject);
+            }
         }
     }
 

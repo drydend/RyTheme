@@ -1,26 +1,30 @@
 ﻿using System;
 using UnityEngine;
+using Zenject;
 
 public class Cross : MonoBehaviour
 {
     [SerializeField]
-    private KeyCode _keyCode;
+    private PianoButtonsPosition _buttonPosition;
+
+    private PlayerInput _input;
 
     public event Action OnPressed;
 
-    private void Update()
+    [Inject]
+    public void Construct(PlayerInput playerInput)
     {
-        if (Input.GetKeyDown(_keyCode))
-        {
-            OnPressed?.Invoke();
-            transform.localScale = new Vector3(0.7f, 0.7f, 1);
-        }
-
-        if (Input.GetKeyUp(_keyCode))
-        {
-            transform.localScale = new Vector3(1f, 1f, 1);
-        }
+        _input = playerInput;
     }
 
+    private void Awake()
+    {
+        _input.PianoButtonsEvents[_buttonPosition] += OnThisButtonDown;
+    }
 
+    private void OnThisButtonDown()
+    {
+        Debug.Log($"Pressed {_buttonPosition}");
+        OnPressed();
+    }
 }
