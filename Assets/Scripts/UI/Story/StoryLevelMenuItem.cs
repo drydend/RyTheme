@@ -11,6 +11,7 @@ public class StoryLevelMenuItem : MonoBehaviour
     private Button _button;
     public StoryLevel StoryLevel { get; private set; }
     public LevelData LevelData { get; private set; }
+
     public void Initialize(StoryLevel storyLevel, LevelData levelData, StoryLevelInfoMenu storyLevelInfoMenu)
     {
         StoryLevel = storyLevel;

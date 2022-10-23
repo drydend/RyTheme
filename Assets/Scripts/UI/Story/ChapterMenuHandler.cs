@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ChapterMenuProvider : MonoBehaviour
+public class ChapterMenuHandler : MonoBehaviour
 {
     [SerializeField]
     private List<ChainMenuButton> _buttons;

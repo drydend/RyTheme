@@ -15,7 +15,10 @@ public class PlayerInput : MonoBehaviour
     public event Action OnRightPianoPartCenterPressed;
     public event Action OnRightPianoPartLastPressed;
 
+    public event Action OnMouseSrollDeltaChanged;
+
     public Dictionary<PianoButtonsPosition, Action> PianoButtonsEvents { get; private set; }
+    public float MouseScrolDelta => Input.mouseScrollDelta.y;
 
     private void Awake()
     {
@@ -37,6 +40,11 @@ public class PlayerInput : MonoBehaviour
             {
                 PianoButtonsEvents[item]?.Invoke();
             }
-        }    
+        }
+        
+        if(Input.mouseScrollDelta.y != 0)
+        {
+            OnMouseSrollDeltaChanged?.Invoke();
+        }
     }
 }

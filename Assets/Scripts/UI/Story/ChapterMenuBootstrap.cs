@@ -15,7 +15,7 @@ public class ChapterMenuBootstrap : MonoBehaviour
     private RectTransform _itemsParent;
 
     [SerializeField]
-    private ChapterMenuProvider _chapterMenuProvider;
+    private ChapterMenuHandler _chapterMenuProvider;
 
     private void Awake()
     { 
@@ -31,7 +31,7 @@ public class ChapterMenuBootstrap : MonoBehaviour
         }
         
         var menu = new ChainMenu<ChainMenuStoryChapterItem>(chainMenuItems,_chainMenuConfig.DistanceBetweenItems,
-            _chainMenuConfig.StartItemIndex, _itemsParent);
+            _chainMenuConfig.StartItemIndex, _itemsParent, Vector2.right);
         menu.SetItemsStartPosition();
 
         _chapterMenuProvider.Initialize(menu);

@@ -4,7 +4,8 @@ using UnityEditor;
 using UnityEngine;
 
 public class ChainMenu<ItemType> where ItemType : ChainMenuItem
-{
+{ 
+    private Vector2 _itemsDirection;
     private float _distanceBetweenItems = 200;
     private int _startItemIndex;
     private RectTransform _itemsParent;
@@ -16,12 +17,14 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
     public ItemType SelectedItem { get; set; }
 
     public ChainMenu(List<ItemType> chainMenuItems, float distanceBetweenItems, 
-        int startItemIndex, RectTransform itemsParent)
+        int startItemIndex, RectTransform itemsParent, Vector2 itemsDirection)
     {
         _items = chainMenuItems;
         _distanceBetweenItems = distanceBetweenItems;
         _startItemIndex = startItemIndex;
         _itemsParent = itemsParent;
+        _itemsDirection = itemsDirection;
+        _itemsDirection.Normalize();
     }
 
     public void SwitchItemsPosition(ChainMenuDirection direction)
@@ -45,7 +48,7 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
         SelectedItem = _items[_selectedItemIndex];
         SelectedItem.OnSelected();
 
-        SelectedItem.RectTransform.anchoredPosition = _itemsParent.anchoredPosition;
+        SelectedItem.RectTransform.anchoredPosition = Vector2.zero;
         for (int i = 0; i < _items.Count; i++)
         {
             var currentItem = _items[i];
@@ -56,8 +59,7 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
             }
 
             var distanceFromSelectedItem = _distanceBetweenItems * (i - _selectedItemIndex);
-            var itemPosition = new Vector2(SelectedItem.RectTransform.anchoredPosition.x + distanceFromSelectedItem,
-                SelectedItem.RectTransform.anchoredPosition.y);
+            var itemPosition = _itemsDirection * distanceFromSelectedItem;
 
             currentItem.RectTransform.anchoredPosition = itemPosition;
         }
@@ -78,9 +80,8 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
 
         for (int i = 0; i < _items.Count; i++)
         {
-            _items[i].RectTransform.anchoredPosition =
-                new Vector2(_items[i].RectTransform.anchoredPosition.x + _distanceBetweenItems,
-                _items[i].RectTransform.anchoredPosition.y);
+            _items[i].RectTransform.anchoredPosition = _items[i].RectTransform.anchoredPosition + _itemsDirection * _distanceBetweenItems;
+
         }
 
     }
@@ -100,9 +101,7 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
 
         for (int i = 0; i < _items.Count; i++)
         {
-            _items[i].RectTransform.anchoredPosition =
-                new Vector2(_items[i].RectTransform.anchoredPosition.x - _distanceBetweenItems,
-                _items[i].RectTransform.anchoredPosition.y);
+            _items[i].RectTransform.anchoredPosition = _items[i].RectTransform.anchoredPosition - _itemsDirection * _distanceBetweenItems;
         }
     }
 }

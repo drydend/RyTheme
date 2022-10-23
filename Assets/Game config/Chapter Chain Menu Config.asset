@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 535eadb59e210884b803657e65d20386, type: 3}
-  m_Name: Chain Menu Config
+  m_Name: Chapter Chain Menu Config
   m_EditorClassIdentifier: 
   _distanceBetweenItems: 400
   _startItemIndex: 0
