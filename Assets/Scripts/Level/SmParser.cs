@@ -14,6 +14,7 @@ public class SmParser
 
     private string[] _lines;
 
+    private string _smFileName = "";
     private string _title = "";
     private string _artist = "";
     private string _genre = "";
@@ -25,9 +26,10 @@ public class SmParser
     private Dictionary<LevelType,Queue<NoteData>> _notesData = new Dictionary<LevelType,Queue<NoteData>>();
     private Dictionary<LevelType,LevelDifficulty> _levelDifficulties = new Dictionary<LevelType, LevelDifficulty>();
     
-    public SmParser(string[] lines)
+    public SmParser(string[] lines, string smFileName)
     {
         _lines = lines;
+        _smFileName = smFileName;
     }
 
     public ParsedTrackData Parse()
@@ -78,7 +80,7 @@ public class SmParser
             }
         }
 
-        var trackData = new ParsedTrackData(_title, _artist, _genre ,_bannerName, 
+        var trackData = new ParsedTrackData(_smFileName, _title, _artist, _genre ,_bannerName, 
             _backgroundName, _music, _BPM, _songOffset,_levelDifficulties ,_notesData);
 
         return trackData;

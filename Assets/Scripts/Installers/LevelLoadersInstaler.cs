@@ -8,17 +8,22 @@ using Zenject;
 
 namespace Assets.Scripts.Installers
 {
-    public class StoryLevelLoaderInstaler : MonoInstaller
+    public class LevelLoadersInstaler : MonoInstaller
     {
         [SerializeField]
         private StoryLevelLoader _storyLevelLoaderPrefab;
+        [SerializeField]
+        private PlaylistLevelLoader _playlistLevelLoaderPrefab;
 
         public override void InstallBindings()
         {
             Container.Bind<StoryLevelLoader>()
                 .FromComponentInNewPrefab(_storyLevelLoaderPrefab)
                 .AsSingle();
-        }
 
+            Container.Bind<PlaylistLevelLoader>()
+                .FromComponentInNewPrefab(_playlistLevelLoaderPrefab)
+                .AsSingle();
+        }
     }
 }

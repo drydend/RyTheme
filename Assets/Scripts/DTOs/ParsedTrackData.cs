@@ -2,6 +2,7 @@
 
 public class ParsedTrackData
 {
+    public readonly string SmFileName;
     public readonly string Title;
     public readonly string Artist;
     public readonly string Genre;
@@ -12,10 +13,11 @@ public class ParsedTrackData
     public readonly float SongTimeOffset;
     public readonly Dictionary<LevelType, LevelDifficulty> LevelDifficulty;
     public readonly Dictionary<LevelType, Queue<NoteData>> LevelPatterns;
-    public ParsedTrackData(string title, string artist, string genre, string bannerName, string backgroundName,
+    public ParsedTrackData(string smFileName,string title, string artist, string genre, string bannerName, string backgroundName,
         string music, string BPM, float timeOffset, Dictionary<LevelType, LevelDifficulty> levelDifficulty,
         Dictionary<LevelType, Queue<NoteData>> levelPatterns)
-    {
+    {   
+        SmFileName = smFileName;
         Title = title;
         Artist = artist;
         Genre = genre;

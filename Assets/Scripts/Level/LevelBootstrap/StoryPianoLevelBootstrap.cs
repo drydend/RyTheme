@@ -1,24 +1,15 @@
-﻿using Assets.Scripts.UI;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class StoryPianoLevelBootstrap : LevelBootstrap
+public class StoryPianoLevelBootstrap : PianoLevelBootstrap
 {
-    private NotesProvider _notesProvider;
-
-    [SerializeField]
-    private List<NotesLine> _notesLines;
-    [SerializeField]
-    private Note _notePrefab;
-
-    private List<NoteSpawner> _notesSpawners = new List<NoteSpawner>();
+    private StoryLevelDataProvider _storyLevelDataProvider;
 
     [Inject]
-    public void Contruct(NotesProvider notesProvider)
+    public void Contruct(NotesProvider notesProvider, StoryLevelDataProvider dataProvider)
     {
-        _notesProvider = notesProvider;
+        _storyLevelDataProvider = dataProvider;
     }
 
     private void Awake()
@@ -26,7 +17,7 @@ public class StoryPianoLevelBootstrap : LevelBootstrap
         _levelHeals.Initialize(_notesProvider, _config);
         _levelScore.Initialize(_notesProvider, _config);
 
-        _audioPlayer.Initialize(_config.NoteTimeToCrossing, _dataProvider.CurrentLevelData);
+        _audioPlayer.Initialize(_config.NoteTimeToCrossing, _storyLevelDataProvider.CurrentLevelData);
 
         foreach (var line in _notesLines)
         {
@@ -36,12 +27,17 @@ public class StoryPianoLevelBootstrap : LevelBootstrap
 
     private void Start()
     {
-        _currentLevel = new Level(_audioPlayer, _dataProvider.CurrentStoryLevel, _dataProvider.CurrentLevelData,
-            _levelHeals, _levelScore, _notesProvider ,_notesSpawners, _config);
+        CreateLevel();
+
+        StartCoroutine(StartLevel(_currentLevel));
+    }
+
+    protected override void CreateLevel()
+    {
+        _currentLevel = new Level(_audioPlayer, _storyLevelDataProvider.CurrentLevelData,
+        _levelHeals, _levelScore, _notesProvider, _notesSpawners, _config);
 
         _currentLevel.OnLost += _loseScrene.Open;
         _currentLevel.OnWin += _winScrene.Open;
-
-        StartCoroutine(StartLevel(_currentLevel));
     }
 }

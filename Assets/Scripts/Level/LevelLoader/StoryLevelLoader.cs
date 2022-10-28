@@ -8,21 +8,21 @@ public class StoryLevelLoader : MonoBehaviour
     private const string StoryCrossSceneName = "StoryCrossLevelScene";
 
     private GameModeManager _gameModeMenager;
-    private StoryModeDataProvider _dataProvider;
+    private StoryLevelDataProvider _dataProvider;
 
     [Inject]
-    public void Construct(StoryModeDataProvider dataProvider, GameModeManager gameModeMenager)
+    public void Construct(StoryLevelDataProvider dataProvider, GameModeManager gameModeMenager)
     {
         _gameModeMenager = gameModeMenager;
         _dataProvider = dataProvider;
     }
 
-    public void PlayStoryLevel(StoryLevel storyLevel, LevelData levelData)
+    public void PlayStoryLevel(StoryLevel storyLevel,LevelData levelData)
     {
         var sceneName = GetSceneNameByLevelType(levelData.CurrentLevelType);
         var storyMode = new StoryGameMode(sceneName);
 
-        _dataProvider.SetCurrentData(storyLevel, levelData);
+        _dataProvider.SetCurrentStoryLevelData(levelData, storyLevel);
 
         _gameModeMenager.SwitchMode(storyMode);
     }

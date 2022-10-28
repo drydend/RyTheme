@@ -1,38 +1,45 @@
-﻿using System.Collections;
-using System.Diagnostics.Contracts;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
-namespace Assets.Scripts.UI
+public class PlayListMenuHandler : MonoBehaviour
 {
-    public class PlayListMenuHandler: MonoBehaviour
+    [SerializeField]
+    private Button _playButton;
+
+    private PlaylistLevelLoader _levelLoader;
+    private PlayerInput _playerInput;
+    private ChainMenu<ChainMenuPlaylistItem> _chainMenu;
+
+    [Inject]
+    public void Construct(PlayerInput input, PlaylistLevelLoader levelLoader)
     {
-        private PlayerInput _playerInput;
-        ChainMenu<ChainMenuPlaylistItem> _chainMenu;
+        _playerInput = input;
+        _levelLoader = levelLoader;
+    }
 
-        [Inject]
-        public void Construct(PlayerInput input)
+    public void Initialize(ChainMenu<ChainMenuPlaylistItem> chainMenu)
+    {
+        _chainMenu = chainMenu;
+
+        _playerInput.OnMouseSrollDeltaChanged += ScrollMenu;
+        _playButton.onClick.AddListener(PlaySelectedLevel);
+    }
+
+    private void ScrollMenu()
+    {
+        if (_playerInput.MouseScrolDelta > 0)
         {
-            _playerInput = input;
+            _chainMenu.SwitchItemsPosition(ChainMenuDirection.Right);
         }
-
-        public void Initialize(ChainMenu<ChainMenuPlaylistItem> chainMenu)
+        else
         {
-            _chainMenu = chainMenu;
-
-            _playerInput.OnMouseSrollDeltaChanged += ScrollMenu;
+            _chainMenu.SwitchItemsPosition(ChainMenuDirection.Left);
         }
+    }
 
-        private void ScrollMenu()
-        {
-            if(_playerInput.MouseScrolDelta > 0)
-            {
-                _chainMenu.SwitchItemsPosition(ChainMenuDirection.Right);
-            }
-            else
-            {
-                _chainMenu.SwitchItemsPosition(ChainMenuDirection.Left);
-            }
-        }
+    private void PlaySelectedLevel()
+    {
+        _levelLoader.PlayPlaylistLevel(_chainMenu.SelectedItem.LevelData);
     }
 }

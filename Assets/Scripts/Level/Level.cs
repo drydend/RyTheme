@@ -5,7 +5,6 @@ using UnityEngine;
 public class Level
 {
     private AudioPlayer _audioPlayer;
-    private StoryLevel _storyLevel;
     private LevelData _levelData;
     private NotesProvider _notesProvider;
 
@@ -21,11 +20,10 @@ public class Level
     public event Action OnLost;
     public event Action OnWin;
 
-    public Level(AudioPlayer audioPlayer, StoryLevel track, LevelData levelData, LevelHeals levelHeals, LevelScore levelScore,
+    public Level(AudioPlayer audioPlayer, LevelData levelData, LevelHeals levelHeals, LevelScore levelScore,
         NotesProvider notesProvider, List<NoteSpawner> spawners, GameConfig gameConfig)
     {
         _audioPlayer = audioPlayer;
-        _storyLevel = track;
         _levelData = levelData;
         _heals = levelHeals;
         _levelScore = levelScore;

@@ -18,8 +18,16 @@ public class LevelDataLoader
     private string _smFileName;
 
     public LevelDataLoader(string smFileName, LevelType levelType, LoadingSongType loadingSongType)
-    {   
+    {
         _smFileName = smFileName;
+        _levelType = levelType;
+        _loadingSongType = loadingSongType;
+    }
+
+    public LevelDataLoader(ParsedTrackData parsedTrackData, LevelType levelType, LoadingSongType loadingSongType)
+    {
+        _parsedTrackData = parsedTrackData;
+        _smFileName = parsedTrackData.SmFileName;
         _levelType = levelType;
         _loadingSongType = loadingSongType;
     }
@@ -34,9 +42,12 @@ public class LevelDataLoader
             return _loadedLevels[smFilePath];
         }
 
-        var lines = File.ReadAllLines(smFilePath);
-        var parser = new SmParser(lines);
-        _parsedTrackData = parser.Parse();
+        if (_parsedTrackData == null)
+        {
+            var lines = File.ReadAllLines(smFilePath);
+            var parser = new SmParser(lines, _smFileName);
+            _parsedTrackData = parser.Parse();
+        }
 
         var bannerPath = GetResourcePath(songDirectory + @"/" +
             GetFileNameWithoutExtinsion(_parsedTrackData.BannerName));
