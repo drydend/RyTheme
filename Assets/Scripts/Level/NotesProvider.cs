@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 
 public class NotesProvider
 {
-    public List<Note> _notesOnScene = new List<Note>();
+    public int NotesCount { get; set; }
 
     public event Action<Note> OnNoteReachedEnd;
     public event Action<Note> OnNotePressed;
 
-    public bool IsThereNotesOnScene => _notesOnScene.Count > 0;
+    public bool IsThereNotesOnScene => NotesCount > 0;
 
-    public void AddNote(Note note) 
+    public void AddNote(Note note)
     {
-        _notesOnScene.Add(note);
+        NotesCount++;
 
         note.OnPressed += () => OnNotePressed?.Invoke(note);
-        note.OnPressed += () => _notesOnScene.Remove(note);
 
         note.OnReachedEnd += () => OnNoteReachedEnd?.Invoke(note);
-        note.OnReachedEnd += () => _notesOnScene.Remove(note);
     }
 }

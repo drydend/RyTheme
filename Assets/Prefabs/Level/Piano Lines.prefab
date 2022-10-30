@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d729f7d029beed348b7570fa7cfea632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cross: {fileID: 1291489381517127100}
+  _cross: {fileID: 0}
   _spawningPoint: {fileID: 6122154070489160471}
   _crossingPoint: {fileID: 8196392857590659677}
   _noteEndPoint: {fileID: 6122154069300979809}
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d729f7d029beed348b7570fa7cfea632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cross: {fileID: 1733664820238954658}
+  _cross: {fileID: 0}
   _spawningPoint: {fileID: 6122154070972867474}
   _crossingPoint: {fileID: 6246610497553206743}
   _noteEndPoint: {fileID: 6122154070617904273}
@@ -552,17 +552,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
---- !u!114 &1291489381517127100 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 358638112380475592, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
-  m_PrefabInstance: {fileID: 1519518238237439348}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a168595da34a824c82383eda262c748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6868859621332340937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5351822991117739453, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
@@ -580,6 +569,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6122154069737239773}
     m_Modifications:
+    - target: {fileID: 905632253670870438, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
+      propertyPath: _buttonPosition
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4582758779686202425, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
       propertyPath: m_Name
       value: Piano Part
@@ -647,6 +640,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6122154070565391219}
     m_Modifications:
+    - target: {fileID: 905632253670870438, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
+      propertyPath: _buttonPosition
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4582758779686202425, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
       propertyPath: m_Name
       value: Piano Part
@@ -695,23 +692,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7253335451776569129, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
---- !u!114 &1733664820238954658 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 358638112380475592, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
-  m_PrefabInstance: {fileID: 2086597648075581546}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a168595da34a824c82383eda262c748, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6246610497553206743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5351822991117739453, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
@@ -724,6 +706,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6122154070173400359}
     m_Modifications:
+    - target: {fileID: 905632253670870438, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
+      propertyPath: _buttonPosition
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4582758779686202425, guid: 2a8b185a31c5e494f8d69281264182b3, type: 3}
       propertyPath: m_Name
       value: Piano Part

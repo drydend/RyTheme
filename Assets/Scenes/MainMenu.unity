@@ -1141,7 +1141,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1488609359}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2185,7 +2185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4986087507712437960, guid: 398fa1a81c8e8c244b313271e96c3281, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4986087507712437967, guid: 398fa1a81c8e8c244b313271e96c3281, type: 3}
       propertyPath: m_Pivot.x
@@ -3001,7 +3001,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6158982659841679666, guid: 99441ba415393f54287c38fedf07e5f8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6158982659841679668, guid: 99441ba415393f54287c38fedf07e5f8, type: 3}
       propertyPath: m_Pivot.x
@@ -4188,6 +4188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chapter Menu Bootstrap
       objectReference: {fileID: 0}
+    - target: {fileID: 9143864305484971054, guid: 6e5b346997cb5824597b419cec774f60, type: 3}
+      propertyPath: _menuConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 4baea33cadea254468711d2b53bbceca, type: 2}
     - target: {fileID: 9143864305484971054, guid: 6e5b346997cb5824597b419cec774f60, type: 3}
       propertyPath: _itemsParent
       value: 

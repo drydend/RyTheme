@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class LevelData
 {
-    public readonly string Title;
-    public readonly string Artist;
+    public readonly string Title = "";
+    public readonly string Artist = "";
     public readonly Sprite Banner;
     public readonly Sprite BackgroundName;
     public readonly AudioClip Music;
-    public readonly string BPM;
+    public readonly string BPM = "" ;
     public readonly float SongTimeOffset;
     public readonly LevelType CurrentLevelType;
     public readonly LevelDifficulty LevelDifficulty;

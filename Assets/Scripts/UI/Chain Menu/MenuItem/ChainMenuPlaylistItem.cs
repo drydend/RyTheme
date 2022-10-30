@@ -1,8 +1,16 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChainMenuPlaylistItem : ChainMenuItem
 {
+    [SerializeField]
+    private Image _bannerImage;
+    [SerializeField]
+    private TMP_Text _artistText;
+    [SerializeField]
+    private TMP_Text _difficulty;
+
     private ParsedTrackData _parsedTrackData;
     private LevelData _levelData;
 
@@ -27,6 +35,10 @@ public class ChainMenuPlaylistItem : ChainMenuItem
     public void Initialize(ParsedTrackData parsedTrackData, LevelType levelType)
     {   
         _parsedTrackData = parsedTrackData;
+        _bannerImage.sprite = LevelData.Banner;
+        _artistText.text = LevelData.Artist;
+        _difficulty.text = LevelData.LevelDifficulty.ToString();
         _title.text = parsedTrackData.Title;
+        _levelType = levelType;
     }
 }

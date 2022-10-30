@@ -50,10 +50,10 @@ public class Note : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _targetPosition, _movingSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, _endPoint.position, _movingSpeed * Time.deltaTime);
         _distanceToCrossPoint = Vector2.Distance(transform.position, _crossPoint.position);
 
-        if (transform.position == _crossPoint.transform.position)
+        if (transform.position == _endPoint.transform.position)
         {   
             if (!_isPressed)
             {

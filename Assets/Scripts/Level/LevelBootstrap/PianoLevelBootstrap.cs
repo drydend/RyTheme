@@ -11,12 +11,11 @@ public class PianoLevelBootstrap : MonoBehaviour
     protected NotesProvider _notesProvider;
     protected LevelScore _levelScore;
     protected LevelHeals _levelHeals;
+    protected LevelStartClock _startClock;
 
     [SerializeField]
     protected GameConfig _config;
     
-    [SerializeField]
-    protected LevelStartClock _startClock;
     [SerializeField]
     protected AudioPlayer _audioPlayer;
 
@@ -37,12 +36,13 @@ public class PianoLevelBootstrap : MonoBehaviour
     private LevelDataProvider _dataProvider;
     [Inject]
     public void Contruct(LevelDataProvider dataProvider, LevelHeals levelHeals,
-        LevelScore levelScore, NotesProvider notesProvider)
+        LevelScore levelScore, NotesProvider notesProvider, LevelStartClock startClock)
     {
         _dataProvider = dataProvider;
         _levelHeals = levelHeals;
         _levelScore = levelScore;
         _notesProvider = notesProvider;
+        _startClock = startClock;
     }
 
     protected virtual void CreateLevel()

@@ -2,12 +2,16 @@
 using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof(Animator))]
 public class Cross : MonoBehaviour
 {
+    private const string PressAnimation = "Press";
+
     [SerializeField]
     private PianoButtonsPosition _buttonPosition;
 
     private PlayerInput _input;
+    private Animator _animator;
 
     public event Action OnPressed;
 
@@ -19,12 +23,13 @@ public class Cross : MonoBehaviour
 
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _input.PianoButtonsEvents[_buttonPosition] += OnThisButtonDown;
     }
 
     private void OnThisButtonDown()
     {
-        Debug.Log($"Pressed {_buttonPosition}");
+        _animator.Play(PressAnimation);
         OnPressed();
     }
 }

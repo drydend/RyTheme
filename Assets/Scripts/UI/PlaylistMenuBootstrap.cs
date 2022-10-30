@@ -26,9 +26,9 @@ namespace Assets.Scripts.UI
             var parsedSongsData = GetAllParsedData(smFiles);
             var menuItems = CreateAllMenuItems(parsedSongsData);
 
-            var chainMenu = new ChainMenu<ChainMenuPlaylistItem>(menuItems, 
-                _menuConfig.DistanceBetweenItems, _menuConfig.StartItemIndex, _itemsParent, Vector2.down);
+            var chainMenu = new ChainMenu<ChainMenuPlaylistItem>(menuItems, _itemsParent, _menuConfig);
             chainMenu.SetItemsStartPosition();
+            StartCoroutine(chainMenu.PlaySwitchAnimationCoroutine());
 
             _playListMenuProvider.Initialize(chainMenu);
         }

@@ -1,29 +1,37 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
 public class ChainMenu<ItemType> where ItemType : ChainMenuItem
-{ 
+{
     private Vector2 _itemsDirection;
     private float _distanceBetweenItems = 200;
     private int _startItemIndex;
     private RectTransform _itemsParent;
 
     private List<ItemType> _items;
+    private List<Vector2> _itemsDisiredPosition;
     private int _selectedItemIndex = 0;
+    private float _animationLerpFactor = 0.5f;
+    private float _animationDurationFactor = 1f;
 
     public RectTransform ItemsParent => _itemsParent;
     public ItemType SelectedItem { get; set; }
 
-    public ChainMenu(List<ItemType> chainMenuItems, float distanceBetweenItems, 
-        int startItemIndex, RectTransform itemsParent, Vector2 itemsDirection)
+    public ChainMenu(List<ItemType> chainMenuItems, RectTransform itemsParent, ChainMenuConfig chainMenuConfig)
     {
         _items = chainMenuItems;
-        _distanceBetweenItems = distanceBetweenItems;
-        _startItemIndex = startItemIndex;
+        Vector2[] vector2s = new Vector2[chainMenuItems.Count];
+        _itemsDisiredPosition = vector2s.ToList();
         _itemsParent = itemsParent;
-        _itemsDirection = itemsDirection;
+        _distanceBetweenItems = chainMenuConfig.DistanceBetweenItems;
+        _startItemIndex = chainMenuConfig.StartItemIndex;
+        _itemsDirection = chainMenuConfig.ItemsPlacementDirection;
+        _animationLerpFactor = chainMenuConfig.AnimationLerpFactor;
+        _animationDurationFactor = chainMenuConfig.AnimationDurationFactor;
         _itemsDirection.Normalize();
     }
 
@@ -49,6 +57,7 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
         SelectedItem.OnSelected();
 
         SelectedItem.RectTransform.anchoredPosition = Vector2.zero;
+        _itemsDisiredPosition[_selectedItemIndex] = Vector2.zero;
         for (int i = 0; i < _items.Count; i++)
         {
             var currentItem = _items[i];
@@ -62,6 +71,22 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
             var itemPosition = _itemsDirection * distanceFromSelectedItem;
 
             currentItem.RectTransform.anchoredPosition = itemPosition;
+            _itemsDisiredPosition[i] = itemPosition;
+        }
+    }
+
+    public IEnumerator PlaySwitchAnimationCoroutine()
+    {
+        while (true)
+        {
+            for (int i = 0; i < _items.Count; i++)
+            {
+                _items[i].RectTransform.anchoredPosition =
+                    Vector2.LerpUnclamped(_items[i].RectTransform.anchoredPosition, 
+                    _itemsDisiredPosition[i], _animationLerpFactor * Time.deltaTime * _animationDurationFactor);
+            }
+
+            yield return null;
         }
     }
 
@@ -80,8 +105,7 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
 
         for (int i = 0; i < _items.Count; i++)
         {
-            _items[i].RectTransform.anchoredPosition = _items[i].RectTransform.anchoredPosition + _itemsDirection * _distanceBetweenItems;
-
+            _itemsDisiredPosition[i] = _itemsDisiredPosition[i] + _itemsDirection * _distanceBetweenItems;
         }
 
     }
@@ -101,7 +125,7 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
 
         for (int i = 0; i < _items.Count; i++)
         {
-            _items[i].RectTransform.anchoredPosition = _items[i].RectTransform.anchoredPosition - _itemsDirection * _distanceBetweenItems;
+            _itemsDisiredPosition[i] = _itemsDisiredPosition[i] - _itemsDirection * _distanceBetweenItems;
         }
     }
 }

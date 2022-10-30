@@ -10,7 +10,7 @@ public class ChapterMenuBootstrap : MonoBehaviour
     private ChainMenuStoryChapterItem _chainMenuItemPrefab;
     
     [SerializeField]
-    private ChainMenuConfig _chainMenuConfig;
+    private ChainMenuConfig _menuConfig;
     [SerializeField]
     private RectTransform _itemsParent;
 
@@ -30,9 +30,9 @@ public class ChapterMenuBootstrap : MonoBehaviour
             menuItem.Initialize(chapter);
         }
         
-        var menu = new ChainMenu<ChainMenuStoryChapterItem>(chainMenuItems,_chainMenuConfig.DistanceBetweenItems,
-            _chainMenuConfig.StartItemIndex, _itemsParent, Vector2.right);
+        var menu = new ChainMenu<ChainMenuStoryChapterItem>(chainMenuItems, _itemsParent, _menuConfig);
         menu.SetItemsStartPosition();
+        StartCoroutine(menu.PlaySwitchAnimationCoroutine());
 
         _chapterMenuProvider.Initialize(menu);
     }

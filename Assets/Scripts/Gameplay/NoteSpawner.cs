@@ -18,6 +18,10 @@ public class NoteSpawner
     public void SpawnNote(float adjustingTime)
     {
         var note = Object.Instantiate(_notePrefab, _line.transform);
+        var directionVector = _line.CrossingPoint.position - _line.SpawningPoint.position;
+        var rotationAngle = Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg;
+        note.transform.rotation = Quaternion.Euler(new Vector3(0, 0, rotationAngle));
+
         note.Initialize(_line.SpawningPoint, _line.CrossingPoint, _line.NoteEndPoint, _notesTimeToCrossing);
         note.AdjustCurrentPositionAndTime(adjustingTime);
         _line.AddNoteToQueue(note);
