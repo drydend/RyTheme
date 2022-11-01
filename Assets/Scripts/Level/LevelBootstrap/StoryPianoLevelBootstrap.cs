@@ -37,7 +37,7 @@ public class StoryPianoLevelBootstrap : PianoLevelBootstrap
         _currentLevel = new Level(_audioPlayer, _storyLevelDataProvider.CurrentLevelData,
         _levelHeals, _levelScore, _notesProvider, _notesSpawners, _config);
 
-        _currentLevel.OnLost += _loseScrene.Open;
-        _currentLevel.OnWin += _winScrene.Open;
+        _currentLevel.OnLost += OnLost;
+        _currentLevel.OnWin += OnWin;
     }
 }

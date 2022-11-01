@@ -2,12 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Zenject;
 
 public class PianoLevelBootstrap : MonoBehaviour
 {
-
     protected NotesProvider _notesProvider;
     protected LevelScore _levelScore;
     protected LevelHeals _levelHeals;
@@ -27,6 +25,8 @@ public class PianoLevelBootstrap : MonoBehaviour
 
     protected List<NoteSpawner> _notesSpawners = new List<NoteSpawner>();
 
+    [SerializeField]
+    private LevelUI _levelUi;
     [SerializeField]
     protected LoseScrene _loseScrene;
     [SerializeField]
@@ -50,8 +50,8 @@ public class PianoLevelBootstrap : MonoBehaviour
         _currentLevel = new Level(_audioPlayer, _dataProvider.CurrentLevelData,
         _levelHeals, _levelScore, _notesProvider, _notesSpawners, _config);
 
-        _currentLevel.OnLost += _loseScrene.Open;
-        _currentLevel.OnWin += _winScrene.Open;
+        _currentLevel.OnLost += OnLost;
+        _currentLevel.OnWin += OnWin;
     }
 
     protected IEnumerator StartLevel(Level level)
@@ -76,5 +76,27 @@ public class PianoLevelBootstrap : MonoBehaviour
         CreateLevel();
 
         StartCoroutine(StartLevel(_currentLevel));
+    }
+
+    protected virtual void OnWin()
+    {
+        _levelUi.Close();
+        _winScrene.Show();
+
+        foreach (var line in _notesLines)
+        {
+            line.gameObject.SetActive(false);
+        }
+    }
+
+    protected virtual void OnLost()
+    {
+        _levelUi.Close();
+        _loseScrene.Open();
+
+        foreach (var line in _notesLines)
+        {
+            line.gameObject.SetActive(false);
+        }
     }
 }

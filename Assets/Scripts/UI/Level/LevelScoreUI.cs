@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using Zenject;
 
@@ -34,20 +29,6 @@ public class LevelScoreUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        var stringNumber = _levelScore.CurrentScore.ToString();
-
-        if(stringNumber.Length < _minNumberOfLetters)
-        {
-            string zerosSequence = "";
-
-            for(int i = 0; i < _minNumberOfLetters - stringNumber.Length; i++)
-            {
-                zerosSequence += "0";
-            }
-
-            stringNumber = zerosSequence + stringNumber;
-        }
-
-        _text.text = stringNumber;
+        _text.text = _levelScore.CurrentScore.ToStringWithZeros(_minNumberOfLetters);
     }
 }

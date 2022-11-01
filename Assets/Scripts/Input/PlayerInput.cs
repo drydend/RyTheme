@@ -16,6 +16,7 @@ public class PlayerInput : MonoBehaviour
     public event Action OnRightPianoPartLastPressed;
 
     public event Action OnMouseSrollDeltaChanged;
+    public event Action OnPauseButtonPressed;
 
     public Dictionary<PianoButtonsPosition, Action> PianoButtonsEvents { get; private set; }
     public float MouseScrolDelta => Input.mouseScrollDelta.y;
@@ -45,6 +46,11 @@ public class PlayerInput : MonoBehaviour
         if(Input.mouseScrollDelta.y != 0)
         {
             OnMouseSrollDeltaChanged?.Invoke();
+        }
+
+        if (Input.GetKeyDown(_inputBinds.PauseButton))
+        {
+            OnPauseButtonPressed?.Invoke();
         }
     }
 }

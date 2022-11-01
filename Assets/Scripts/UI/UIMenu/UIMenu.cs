@@ -13,12 +13,12 @@ public class UIMenu : MonoBehaviour
         
     public bool CoverPreviousMenu => _coverPreviousMenu;
 
-    public void Open()
+    public virtual void Open()
     {
         _menu.SetActive(true);
         OnOpened?.Invoke();
     }
-    public void Close()
+    public virtual void Close()
     {
         _menu.SetActive(false);
         OnClosed?.Invoke();

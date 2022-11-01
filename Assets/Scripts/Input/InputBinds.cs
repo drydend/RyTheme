@@ -18,6 +18,13 @@ public class InputBinds : ScriptableObject
     [SerializeField]
     private KeyCode _rightPianoPartLast = KeyCode.L;
 
+    [Space]
+    [Header("UI")]
+    [SerializeField]
+    private KeyCode _pauseButton;
+
+    public KeyCode PauseButton => _pauseButton;
+
     public KeyCode GetPianoButtonKeyCode(PianoButtonsPosition pianoButtonPosition)
     {
         switch (pianoButtonPosition)

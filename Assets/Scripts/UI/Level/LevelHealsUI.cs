@@ -16,9 +16,15 @@ public class LevelHealsUI : MonoBehaviour
         _levelHeals = levelHeals;
     }
 
-    private void Start()
+    private void OnEnable()
     {
         _levelHeals.OnHealsChanged += UpdateValue;
+        UpdateValue();
+    }
+
+    private void OnDisable()
+    {
+        _levelHeals.OnHealsChanged -= UpdateValue;
     }
 
     private void UpdateValue()
