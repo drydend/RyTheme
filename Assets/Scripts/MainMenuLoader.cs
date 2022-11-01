@@ -3,7 +3,7 @@ using Zenject;
 
 public class MainMenuLoader : MonoBehaviour
 {
-    private const string MainMenuScene = "MainMenuScene";
+    private const string MainMenuScene = "MainMenu";
     private GameModeManager _gameModeManager;
 
     [Inject]

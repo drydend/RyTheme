@@ -80,7 +80,6 @@ public class PianoLevelBootstrap : MonoBehaviour
 
     protected virtual void OnWin()
     {
-        _levelUi.Close();
         _winScrene.Show();
 
         foreach (var line in _notesLines)
@@ -91,7 +90,6 @@ public class PianoLevelBootstrap : MonoBehaviour
 
     protected virtual void OnLost()
     {
-        _levelUi.Close();
         _loseScrene.Open();
 
         foreach (var line in _notesLines)

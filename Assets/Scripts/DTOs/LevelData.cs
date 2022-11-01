@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelData
@@ -28,4 +29,23 @@ public class LevelData
         LevelDifficulty = parsedTrackData.LevelDifficulty[levelType];
         LevelsPattern = parsedTrackData.LevelPatterns[levelType];
     }
+
+    private LevelData(LevelData levelData)
+    {
+        Title = levelData.Title;
+        Artist = levelData.Artist;
+        Banner = levelData.Banner;
+        BackgroundName = levelData.BackgroundName;
+        Music = levelData.Music;
+        BPM = levelData.BPM;
+        SongTimeOffset = levelData.SongTimeOffset;
+        CurrentLevelType = levelData.CurrentLevelType;
+        LevelDifficulty = levelData.LevelDifficulty;
+        LevelsPattern = new Queue<NoteData>(levelData.LevelsPattern);
+    }   
+
+    public LevelData Clone()
+    {
+        return new LevelData(this);
+    }   
 }

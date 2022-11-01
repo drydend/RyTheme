@@ -38,7 +38,7 @@ public class Note : MonoBehaviour
 
     public void OnNotePressed()
     {
-        if (_hasReachedEnd)
+        if (_hasReachedEnd && !_isPressed)
         {
             return;
         }
@@ -55,7 +55,7 @@ public class Note : MonoBehaviour
 
         if (transform.position == _endPoint.transform.position)
         {   
-            if (!_isPressed)
+            if (!_isPressed && !_hasReachedEnd)
             {
                 _hasReachedEnd = true;
                 OnReachedEnd?.Invoke();

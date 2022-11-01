@@ -24,7 +24,16 @@ public class Cross : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+    }
+
+    private void OnEnable()
+    {
         _input.PianoButtonsEvents[_buttonPosition] += OnThisButtonDown;
+    }
+
+    private void OnDisable()
+    {
+        _input.PianoButtonsEvents[_buttonPosition] -= OnThisButtonDown;
     }
 
     private void OnThisButtonDown()

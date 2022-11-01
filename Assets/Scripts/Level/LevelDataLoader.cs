@@ -39,7 +39,7 @@ public class LevelDataLoader
 
         if (_loadedLevels.ContainsKey(smFilePath))
         {
-            return _loadedLevels[smFilePath];
+            return _loadedLevels[smFilePath].Clone();
         }
 
         if (_parsedTrackData == null)
@@ -63,7 +63,7 @@ public class LevelDataLoader
         var levelData = new LevelData(_parsedTrackData, banner, background, music, _levelType);
         _loadedLevels[smFilePath] = levelData;
 
-        return levelData;
+        return levelData.Clone();
     }
 
     private string GetSongsDirectoryPath()

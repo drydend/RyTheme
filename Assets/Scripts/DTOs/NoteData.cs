@@ -1,4 +1,4 @@
-﻿public class NoteData
+﻿public struct NoteData
 {
     public readonly float PressTime;
     public readonly int Line;

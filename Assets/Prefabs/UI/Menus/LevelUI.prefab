@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4953616991987113444
 RectTransform:
   m_ObjectHideFlags: 0
@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 888c0cad3a7fcb04fba2ed36e0380dd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menu: {fileID: 6952891896248523870}
+  _coverPreviousMenu: 1
   _healsUi: {fileID: 5379603862880949362}
   _levelScoreUI: {fileID: 7678294501927948756}
 --- !u!1001 &2053730191056188926
@@ -151,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6208319357018013782, guid: 90b6e78e0541b1f469706f764cbc27b0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6208319357251595960, guid: 90b6e78e0541b1f469706f764cbc27b0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90b6e78e0541b1f469706f764cbc27b0, type: 3}

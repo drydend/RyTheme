@@ -14,6 +14,15 @@ public class MainMenuButton : MonoBehaviour
     private void Awake()
     {
         _button = GetComponent<Button>();
-        _button.onClick.AddListener(_mainMenuLoader.LoadMainMenu);
+    }
+
+    private void OnEnable()
+    {
+        _button.onClick.AddListener(LoadMainMenu);
+    }
+
+    private void LoadMainMenu()
+    {
+        _mainMenuLoader.LoadMainMenu();
     }
 }

@@ -18,9 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/PlaylistMode/PlaylistCrossLevelScene.unity
     guid: 6d9a026d29b3ddd46aa9b0679aa82a99
   - enabled: 1
-    path: Assets/Scenes/StoryMode/StoryCrossLevelScene.unity
+    path: Assets/Scenes/StoryMode/StoryPianoLevelScene.unity
     guid: 7122ad3f2c0ea664ea68d291c0aa65a1
   - enabled: 1
-    path: Assets/Scenes/StoryMode/StoryPianoLevelScene.unity
+    path: Assets/Scenes/StoryMode/StoryCrossLevelScene.unity
     guid: 2239424f90f0c8341af8e3d3a62da3e6
   m_configObjects: {}

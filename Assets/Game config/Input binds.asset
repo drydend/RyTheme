@@ -18,3 +18,4 @@ MonoBehaviour:
   _rightPianoPartFirst: 106
   _rightPianoPartCentre: 107
   _rightPianoPartLast: 108
+  _pauseButton: 27
