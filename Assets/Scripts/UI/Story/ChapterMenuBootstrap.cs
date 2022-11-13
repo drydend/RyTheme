@@ -32,7 +32,6 @@ public class ChapterMenuBootstrap : MonoBehaviour
         
         var menu = new ChainMenu<ChainMenuStoryChapterItem>(chainMenuItems, _itemsParent, _menuConfig);
         menu.SetItemsStartPosition();
-        StartCoroutine(menu.PlaySwitchAnimationCoroutine());
 
         _chapterMenuProvider.Initialize(menu);
     }

@@ -134,4 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a32c2b77ce69edc4baea4ee0bd1e53a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _chapter: {fileID: 0}
+  _selectedScale: 1.2
+  _defaultScale: 1
+  _lerpFactor: 0.9
+  _animationDurationFactor: 3

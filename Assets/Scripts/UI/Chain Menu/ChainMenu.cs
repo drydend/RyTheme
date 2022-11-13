@@ -50,9 +50,19 @@ public class ChainMenu<ItemType> where ItemType : ChainMenuItem
         }
     }
 
+    public void ResetItemsPosition()
+    {
+        SetSelectedItem(_selectedItemIndex);
+    }
+
     public void SetItemsStartPosition()
     {
-        _selectedItemIndex = _startItemIndex;
+        SetSelectedItem(_startItemIndex);
+    }
+
+    public void SetSelectedItem(int slectedItemIndex)
+    {
+        _selectedItemIndex = slectedItemIndex;
         SelectedItem = _items[_selectedItemIndex];
         SelectedItem.OnSelected();
 

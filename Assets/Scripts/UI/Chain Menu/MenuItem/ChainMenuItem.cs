@@ -18,6 +18,8 @@ public class ChainMenuItem : MonoBehaviour
     private Coroutine _unselectedCoroutine;
 
     private RectTransform _rectTransform;
+
+    private bool _isSelected;
     public RectTransform RectTransform
     {
         get
@@ -41,7 +43,8 @@ public class ChainMenuItem : MonoBehaviour
             StopCoroutine(_unselectedCoroutine);
         }
 
-        _selectedCoroutine =  StartCoroutine(PlayUnselectedAnimation());
+        _isSelected = false;
+        _selectedCoroutine = StartCoroutine(PlayUnselectedAnimation());
     }
 
     public virtual void OnSelected()
@@ -56,7 +59,25 @@ public class ChainMenuItem : MonoBehaviour
             StopCoroutine(_unselectedCoroutine);
         }
 
+        _isSelected = true;
         _unselectedCoroutine = StartCoroutine(PlaySelectedAnimation());
+    }
+
+    private void OnEnable()
+    {
+        if (_isSelected)
+        {
+            RectTransform.localScale = new Vector3(_selectedScale, _selectedScale, _selectedScale);
+        }
+        else
+        {
+            RectTransform.localScale = new Vector3(_defaultScale, _defaultScale, _defaultScale);
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private IEnumerator PlaySelectedAnimation()

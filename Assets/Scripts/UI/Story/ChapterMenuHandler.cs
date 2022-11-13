@@ -12,6 +12,8 @@ public class ChapterMenuHandler : MonoBehaviour
     private StoryLevelsMenu _storylevelMenu;
 
     private ChainMenu<ChainMenuStoryChapterItem> _chainMenu;
+
+    private Coroutine _chainMenuItemsAnimation;
     public void Initialize(ChainMenu<ChainMenuStoryChapterItem> chainMenu)
     {
         _chainMenu = chainMenu;
@@ -22,5 +24,27 @@ public class ChapterMenuHandler : MonoBehaviour
         }
 
         _choseButton.onClick.AddListener(() => _storylevelMenu.ShowLevels(_chainMenu.SelectedItem.Chapter));
+        _chainMenuItemsAnimation = StartCoroutine(_chainMenu.PlaySwitchAnimationCoroutine());
+    }
+
+    private void OnEnable()
+    {
+        if (_chainMenuItemsAnimation == null)
+        {
+            return;
+        }
+
+        _chainMenu.ResetItemsPosition();
+        _chainMenuItemsAnimation = StartCoroutine(_chainMenu.PlaySwitchAnimationCoroutine());
+    }
+
+    private void OnDisable()
+    {
+        if (_chainMenuItemsAnimation == null)
+        {
+            return;
+        }
+
+        StopCoroutine(_chainMenuItemsAnimation);
     }
 }

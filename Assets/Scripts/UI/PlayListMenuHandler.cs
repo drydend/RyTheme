@@ -11,6 +11,8 @@ public class PlayListMenuHandler : MonoBehaviour
     private PlayerInput _playerInput;
     private ChainMenu<ChainMenuPlaylistItem> _chainMenu;
 
+    private Coroutine _chainMenuItemsAnimation;
+
     [Inject]
     public void Construct(PlayerInput input, PlaylistLevelLoader levelLoader)
     {
@@ -24,6 +26,29 @@ public class PlayListMenuHandler : MonoBehaviour
 
         _playerInput.OnMouseSrollDeltaChanged += ScrollMenu;
         _playButton.onClick.AddListener(PlaySelectedLevel);
+
+        _chainMenuItemsAnimation = StartCoroutine(_chainMenu.PlaySwitchAnimationCoroutine());
+    }
+
+    private void OnEnable()
+    {
+        if (_chainMenuItemsAnimation == null)
+        {
+            return;
+        }
+
+        _chainMenu.ResetItemsPosition();
+        _chainMenuItemsAnimation = StartCoroutine(_chainMenu.PlaySwitchAnimationCoroutine());
+    }
+
+    private void OnDisable()
+    {
+        if (_chainMenuItemsAnimation == null)
+        {
+            return;
+        }
+
+        StopCoroutine(_chainMenuItemsAnimation);
     }
 
     private void ScrollMenu()

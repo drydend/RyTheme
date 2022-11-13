@@ -17,7 +17,7 @@ namespace Assets.Scripts.UI
         [SerializeField]
         private RectTransform _itemsParent;
         [SerializeField]
-        private PlayListMenuHandler _playListMenuProvider;
+        private PlayListMenuHandler _playListMenuHandler;
 
 
         private void Awake()
@@ -28,9 +28,8 @@ namespace Assets.Scripts.UI
 
             var chainMenu = new ChainMenu<ChainMenuPlaylistItem>(menuItems, _itemsParent, _menuConfig);
             chainMenu.SetItemsStartPosition();
-            StartCoroutine(chainMenu.PlaySwitchAnimationCoroutine());
 
-            _playListMenuProvider.Initialize(chainMenu);
+            _playListMenuHandler.Initialize(chainMenu);
         }
 
         private List<ChainMenuPlaylistItem> CreateAllMenuItems(List<ParsedTrackData> tracksData)
