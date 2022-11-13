@@ -43,7 +43,7 @@ public class GameModeManager : MonoBehaviour
     {
         if (!_isStarted)
         {
-            throw new Exception("Start Game mode is not entered");
+            throw new Exception("Start Game mode is not entered. You should start from bootstap scene");
         }
 
         yield return new WaitUntil(() => _isSwitching == false);

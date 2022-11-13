@@ -38,16 +38,16 @@ public class LineEqualizer : MonoBehaviour
         if (_currentUpdateStep >= _minUpdateStep)
         {
             _currentUpdateStep = 0;
-            _audioSource.clip.GetData(_clipSamplesData, _audioSource.timeSamples);
+            _audioSource.GetOutputData(_clipSamplesData, 0);
 
             var positions = new Vector3[_clipSamplesData.Length];
 
             for (int i = 0; i < _clipSamplesData.Length; i++)
             {
-                positions[i] = new Vector3(_clipSamplesData[i] * _scaleFactor , i * _distanceScale, 0);
+                positions[i] = new Vector3(i * _distanceScale, Mathf.Abs(_clipSamplesData[i] * _scaleFactor), 0);
             }
 
-            _lineRenderer.positionCount = _clipSamplesData.Lengths;
+            _lineRenderer.positionCount = _clipSamplesData.Length;
             _lineRenderer.SetPositions(positions);
         }
 
